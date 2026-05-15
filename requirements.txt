@@ -5,3 +5,5 @@ ddgs>=7.0.0
 yfinance>=0.2.40
 python-dotenv>=1.0.0
 rich>=13.0.0
+flask>=3.0.0
+flask-cors>=4.0.0

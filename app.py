@@ -1,6 +1,6 @@
 """
 Flask Backend สำหรับ Stock Chatbot UI
-รัน: python app.py
+สำหรับ Hugging Face Spaces
 """
 import os
 import logging
@@ -358,12 +358,5 @@ def chat():
 # ─── Run Server ──────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    print(f"""
-╔══════════════════════════════════════════════╗
-║   📊 Stock Assistant — Chatbot UI            ║
-║   🌐 http://localhost:{port}                   ║
-║   ⏹  กด Ctrl+C เพื่อหยุด server              ║
-╚══════════════════════════════════════════════╝
-    """)
-    app.run(host="0.0.0.0", port=port, debug=True)
+    port = int(os.getenv("PORT", 7860))
+    app.run(host="0.0.0.0", port=port)
