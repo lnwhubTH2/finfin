@@ -85,6 +85,12 @@ class StockAgent:
             # Agent ตัดสินใจหยุด — ส่งคำตอบสุดท้าย
             if finish_reason == "stop" or not msg.tool_calls:
                 answer = msg.content or "ไม่สามารถตอบได้"
+                # กรอง tool_calls JSON ที่หลุดมาใน content
+                if answer.strip().startswith('{"name"') or answer.strip().startswith('[{"name"'):
+                    continue  # ข้ามรอบนี้ ให้ LLM ตอบใหม่
+                logger.info(f"\n[FINAL ANSWER]\n{answer}")
+                logger.info("=" * 60)
+                return answer
                 logger.info(f"\n[FINAL ANSWER]\n{answer}")
                 logger.info("=" * 60)
                 return answer

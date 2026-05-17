@@ -342,18 +342,18 @@ def index():
 def chat():
     data = request.get_json()
     query = data.get("query", "").strip()
-
     if not query:
         return jsonify({"answer": "กรุณาพิมพ์คำถาม"}), 400
-
     try:
         stock_agent = get_agent()
         answer = stock_agent.run(query)
+        # กรอง tool_calls JSON ที่หลุดมา
+        if answer.strip().startswith('{"name"') or answer.strip().startswith('[{"name"'):
+            answer = "ขออภัย กำลังประมวลผลอยู่ กรุณาลองถามใหม่อีกครั้ง"
         return jsonify({"answer": answer})
     except Exception as e:
         logging.exception("Error in chat endpoint")
         return jsonify({"answer": f"เกิดข้อผิดพลาด: {str(e)}"}), 500
-
 
 # ─── Run Server ──────────────────────────────────────────────────
 
