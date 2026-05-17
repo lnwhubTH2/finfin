@@ -51,9 +51,12 @@ def run(ticker: str) -> str:
         eps = info.get("trailingEps")
         sector = info.get("sector", "N/A")
 
+        from datetime import datetime
+        
         lines = [
             f"📈 {name} ({ticker.upper()})",
             f"ราคาปัจจุบัน: {price:,.2f} {currency}",
+            f"อัพเดทล่าสุด: {datetime.now().strftime('%d/%m/%Y %H:%M')}",
             f"Sector: {sector}",
         ]
         if market_cap:
